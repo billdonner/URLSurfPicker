@@ -22,13 +22,19 @@ open class URLSurfPicker {
     private(set) var coord: URLPickerCoordinator
     private(set)  var pvc: URLPickerViewController
     private(set) var nav : URLPickerNavigationController
-    public init(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS) {
+    private init(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS) {
         self.coord = URLPickerCoordinator( urls, foreach:foreach, finally:finally)
         self.pvc =   URLPickerViewController( coord )
         self.nav =   URLPickerNavigationController(  pvc)
     }
+    @available(iOS 13.0.0, *)
+    public static func make(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS)-> some UINavigationController {
+        let t = URLSurfPicker(urls,foreach:foreach,finally:finally)
+        return t.nav
+        
+    }
     
-
+    
      final class URLPickerNavigationController:UINavigationController {
         
         private override init(rootViewController: UIViewController) {

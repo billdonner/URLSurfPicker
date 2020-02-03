@@ -4,6 +4,7 @@ import XCTest
 // I really dont know how to write proper unit tests for this, I will look into UI Testing in the future
 
 
+@available(iOS 13.0.0, *)
 final class URLSurferTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
@@ -13,12 +14,12 @@ final class URLSurferTests: XCTestCase {
     }
     func testIsa(){
         
-        let _ =   URLSurfPicker([URL(string:"https://apple.com")!,
+        let _ =   URLSurfPicker.make([URL(string:"https://apple.com")!,
                                   URL(string:"https://google.com")!],
                                  foreach: { url in print("got \(url)") },
                                  finally: { allurls in  print ("gotall \(allurls)") })
-        
-            XCTAssertEqual(URLSurfer().text, "URLSurfer")
+              XCTAssertEqual(URLSurfer().text, "URLSurfer")
+   //XCTAssert(vs is UINavigationController)
 
     }
     func xtestThatNeedsIOS(){
@@ -27,7 +28,7 @@ final class URLSurferTests: XCTestCase {
            // Create an expectation for a background download task.
               let expectation = XCTestExpectation(description: "Picker test needs Window")
               
-           let _ =   URLSurfPicker([URL(string:"https://apple.com")!,
+        let _ =   URLSurfPicker.make([URL(string:"https://apple.com")!,
                                      URL(string:"https://google.com")!],
                                     foreach: { url in print("got \(url)") },
                                     finally: { allurls in  print ("gotall \(allurls)")
@@ -37,7 +38,7 @@ final class URLSurferTests: XCTestCase {
                              
              // Wait until the expectation is fulfilled, with a timeout of 10 seconds.
            wait(for: [expectation], timeout: 10.0)
-        XCTAssertEqual(URLSurfer().text, "URLSurfer")
+        //XCTAssert(vs is UINavigationController)
        }
 
 static var allTests = [
