@@ -8,7 +8,7 @@ struct URLSurfer {
 }
 
 /**
- Choose a URL by Surfing the Internet 
+ Choose a URL by Surfing the Internet
  */
 public typealias SurfSig = (URL)->()
 public typealias SurfSigS = ([URL])->()
@@ -28,14 +28,14 @@ open class URLSurfPicker {
         self.nav =   URLPickerNavigationController(  pvc)
     }
     @available(iOS 13.0.0, *)
-    public static func make(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS)-> some UINavigationController {
+    public static func make(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS)-> URLSurfPicker.URLPickerNavigationController {
         let t = URLSurfPicker(urls,foreach:foreach,finally:finally)
         return t.nav
         
     }
     
     
-     final class URLPickerNavigationController:UINavigationController {
+    public final class URLPickerNavigationController:UINavigationController {
         
         private override init(rootViewController: UIViewController) {
             super.init(rootViewController:rootViewController)
