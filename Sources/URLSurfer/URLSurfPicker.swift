@@ -10,11 +10,11 @@ struct URLSurfer {
 /**
  Choose a URL by Surfing the Internet 
  */
-
-public func URLSurfPicker(_ urls:[URL])->UIViewController {
-    URLPickerNavigationController(
-    URLPickerViewController(
-        URLPickerCoordinator( urls)))
+public typealias SurfSig = (URL)->()
+public func URLSurfPicker(_ urls:[URL], finally:@escaping SurfSig)->UIViewController {
+     let coord = URLPickerCoordinator( urls, finally:finally)
+    let pvc =   URLPickerViewController( coord )
+   return  URLPickerNavigationController(  pvc)
 }
 
 fileprivate protocol URLPickerDelegate:class {
@@ -40,8 +40,10 @@ fileprivate final class URLPickerNavigationController:UINavigationController {
 
 fileprivate final class URLPickerCoordinator: URLPickerDelegate {
     var picksites:[URL]
-    init(_ picksites:[URL]) {
+    var finally:SurfSig
+    init(_ picksites:[URL], finally:@escaping SurfSig) {
         self.picksites = picksites
+        self.finally = finally
     }
     func didPickStartOfNewCrawl(url: URL) {
       print("New crawl begins here: \(url)")
