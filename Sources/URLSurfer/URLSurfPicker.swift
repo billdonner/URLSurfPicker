@@ -27,11 +27,11 @@ open class URLSurfPicker {
         self.pvc =   URLPickerViewController( coord )
         self.nav =   URLPickerNavigationController(  pvc)
     }
+    
     @available(iOS 13.0.0, *)
     public static func make(_ urls:[URL], foreach:@escaping SurfSig , finally:@escaping SurfSigS)-> URLSurfPicker.URLPickerNavigationController {
         let t = URLSurfPicker(urls,foreach:foreach,finally:finally)
         return t.nav
-        
     }
     
     
@@ -188,7 +188,7 @@ open class URLSurfPicker {
             progressView.sizeToFit()
             let progressButton = UIBarButtonItem(customView: progressView)
             
-            let selectpage = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(selectcurrentURLForUser))
+            let selectpage = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openTapped))
             let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
             
@@ -205,7 +205,7 @@ open class URLSurfPicker {
             let url = websites[0]
             webView.load(URLRequest(url: url))
             webView.allowsBackForwardNavigationGestures = true
-            navigationItem.rightBarButtonItems = [ UIBarButtonItem(title: "Pick", style: .plain, target: self, action: #selector(openTapped))]
+            navigationItem.rightBarButtonItems = [ UIBarButtonItem(title: "Use This", style: .plain, target: self, action: #selector(selectcurrentURLForUser))]
             setupToolbar()
             navigationController?.isToolbarHidden = false
             
