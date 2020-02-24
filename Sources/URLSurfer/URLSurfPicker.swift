@@ -79,7 +79,7 @@ open class URLSurfPicker {
         convenience init(_ rvc: UINavigationController) {
             self.init(rootViewController: rvc)
             hidesBarsOnTap = false
-            hidesBarsOnSwipe = true
+            hidesBarsOnSwipe = false
             
         }
         required internal init?(coder aDecoder: NSCoder) {

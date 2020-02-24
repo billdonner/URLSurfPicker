@@ -14,7 +14,7 @@ final class URLSurferTests: XCTestCase {
     }
     func testIsa(){
         
-        let _ =   URLSurfPicker.make([URL(string:"https://apple.com")!,
+        let _ : UINavigationController =  URLSurfPicker.make([URL(string:"https://apple.com")!,
                                   URL(string:"https://google.com")!],
                                  foreach: { url in print("got \(url)") },
                                  finally: { allurls in  print ("gotall \(allurls)") })
@@ -28,7 +28,7 @@ final class URLSurferTests: XCTestCase {
            // Create an expectation for a background download task.
               let expectation = XCTestExpectation(description: "Picker test needs Window")
               
-        let _ =   URLSurfPicker.make([URL(string:"https://apple.com")!,
+        let _ : UINavigationController =   URLSurfPicker.make([URL(string:"https://apple.com")!,
                                      URL(string:"https://google.com")!],
                                     foreach: { url in print("got \(url)") },
                                     finally: { allurls in  print ("gotall \(allurls)")
